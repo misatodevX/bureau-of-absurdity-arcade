@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e6f34a">
+  <meta name="description" content="A goose. A donut cannon. An office apocalypse. Survive five departments and fire the cosmic HR toaster.">
+  <title>Bureau of Absurdity — Clock in. Lose your mind.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23e6f34a'/%3E%3Ctext x='8' y='48' font-size='45'%3E🪿%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="masthead">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">BA<span>✳</span></span><div>BUREAU OF<br>ABSURDITY</div></div>
+      <div class="header-center"><span class="cross">✳</span> REALITY IS A TEMPORARY EMPLOYEE <span class="edition">SURVIVAL DIVISION</span></div>
+      <div class="header-tools"><button id="soundBtn" class="tool" aria-label="Turn sound on" aria-pressed="false">SOUND: OFF</button><button id="pauseBtn" class="tool" aria-label="Pause" disabled>Ⅱ</button><button id="fullBtn" class="tool full" aria-label="Fullscreen">⛶</button></div>
+    </header>
+
+    <main class="workspace">
+      <section class="arena-shell" aria-label="Game arena">
+        <div class="game-top"><div class="live"><span></span><b id="statusLabel">REALITY: NOT APPROVED</b></div><div id="timer">00:00</div><div>CASE <span id="runNumber">0001</span></div></div>
+        <div class="arena" id="arena">
+          <canvas id="game" width="1200" height="760" aria-label="Move with WASD or arrow keys. Shooting is automatic. Space to dash. E to use your ultimate." tabindex="0"></canvas>
+          <div class="vignette" aria-hidden="true"></div>
+          <div class="field-status" aria-label="Live game status"><span>DEPT. <b id="fieldWave">01</b></span><span>FIRED <b id="fieldKills">0</b></span><span>HONK <b id="fieldCharge">0%</b></span></div>
+          <div class="event-toast" id="eventToast" role="status"><span id="eventTag">REALITY MALFUNCTION</span><strong id="eventTitle"></strong><small id="eventDescription"></small></div>
+          <div class="boss-hud" id="bossHud" hidden><div><span>HEAD OF HUMAN RESOURCES</span><b>HR-TOASTER 9000</b><span id="bossPercent">100%</span></div><div class="boss-track"><i id="bossFill"></i></div></div>
+          <div class="overlay title-screen" id="titleScreen">
+            <div class="cover-art" id="coverArt" aria-hidden="true"></div>
+            <div class="title-content"><div class="eyebrow"><span>AN UNREASONABLE SURVIVAL GAME</span><b>ZERO COMMON SENSE</b></div><h1>CLOCK IN.<br>LOSE YOUR<br><span>MIND.</span></h1><p class="intro">A goose. A donut cannon.<br>One very hostile work environment.</p><button class="primary" id="startBtn">START THE CHAOS <span>ENTER</span></button><div class="start-note">5 DEPARTMENTS · 1 EVIL TOASTER · INFINITE ABSURDITY</div></div>
+            <div class="art-stamp" aria-hidden="true"><span>EMPLOYEE OF</span><strong>THE END</strong><small>OF THE WORLD</small></div>
+            <div class="title-bottom"><span>✳ DONUTS ARE AMMUNITION</span><span>SURVIVE. MUTATE. HONK.</span></div>
+          </div>
+          <div class="overlay modal-overlay" id="pauseScreen" hidden><div class="modal pause-modal"><span class="modal-kicker">MANDATORY COFFEE BREAK</span><h2>GOOSE<br>ON PAUSE.</h2><p>Even chaos needs a little time off.</p><button class="primary" id="resumeBtn">BACK TO CHAOS <span>ESC</span></button><button class="secondary" id="restartPauseBtn">Start a fresh shift</button></div></div>
+          <div class="overlay modal-overlay" id="upgradeScreen" hidden><div class="modal upgrade-modal"><span class="modal-kicker">A PROMOTION. STILL NO PAY RISE.</span><h2>CHOOSE YOUR<br>NEXT PROBLEM.</h2><p>One upgrade. Even less common sense.</p><div class="upgrade-options" id="upgradeOptions"></div><small class="choice-hint">Press 1, 2 or 3 to choose.</small></div></div>
+          <div class="overlay modal-overlay" id="endScreen" hidden><div class="modal end-modal"><span class="modal-kicker" id="endKicker"></span><h2 id="endTitle"></h2><p id="endText"></p><div class="result-grid"><div><span>SCORE</span><b id="endScore">0</b></div><div><span>FIRED</span><b id="endKills">0</b></div><div><span>SURVIVED</span><b id="endTime">00:00</b></div></div><button class="primary" id="againBtn">ONE MORE SHIFT <span>ENTER</span></button><button class="secondary" id="endlessBtn" hidden>Enter endless overtime</button><small id="newRecord" class="record-note"></small></div></div>
+          <div class="mobile-controls" id="mobileControls"><div class="joystick" id="joystick" aria-label="Movement joystick"><i id="joystickKnob"></i></div><div class="touch-actions"><button id="touchDash" aria-label="Dash">DASH</button><button id="touchChaos" aria-label="Honk ultimate">HONK!</button></div></div>
+        </div>
+        <div class="controls-strip"><div><kbd>W A S D</kbd><span>Move</span></div><div><kbd>SPACE</kbd><span>Dash</span></div><div><kbd>E</kbd><span>Honk nuke</span></div><div class="auto-note"><span class="tiny-cross">✳</span> AUTO-FIRE IS ON</div></div>
+      </section>
+
+      <aside class="dashboard" aria-label="Game statistics">
+        <div class="ticket-head"><span>EMPLOYEE FILE</span><b>G-001</b></div>
+        <div class="score-block"><span class="label">DAMAGE TO CORPORATE CULTURE</span><div class="score" id="score">000000</div><div class="best">BEST <b id="bestScore">000000</b></div></div>
+        <div class="health-block"><div class="stat-heading"><span>WILL TO HONK</span><b id="healthLabel">100 / 100</b></div><div class="health-track"><i id="healthFill"></i></div></div>
+        <div class="department"><span class="label">CURRENT DEPARTMENT</span><div><b id="wave">01<span>/ 05</span></b><span id="departmentName">PANIC<br>RECEPTION</span></div><div class="wave-track"><i id="waveFill"></i></div><small id="waveHint">Clock in. No paperwork required.</small></div>
+        <div class="chaos-block"><div class="stat-heading"><span>HONK-O-METER</span><b id="chaosLabel">0%</b></div><div class="chaos-track"><i id="chaosFill"></i></div><button id="chaosBtn" disabled><span>✳</span><div>HONK NUKE<small id="chaosHint">Collect coffee. Charge chaos.</small></div><kbd>E</kbd></button></div>
+        <div class="ability"><span>ESCAPE RESPONSIBILITY</span><b id="dashStatus">READY</b><div class="dash-track"><i id="dashFill"></i></div></div>
+        <div class="mutation"><span class="label">REALITY STATUS</span><strong id="mutationName">SUSPICIOUSLY STABLE</strong><span id="mutationTimer">Give it a minute.</span></div>
+        <div class="incident"><span class="label">INCIDENT REPORT</span><div id="incidentLog"><p><span>00:00</span>Goose cleared to operate dangerous donuts.</p><p><span>00:00</span>Common sense is on unpaid leave.</p></div></div>
+        <div class="ticket-foot"><div class="barcode" aria-hidden="true"></div><span>RETURN TO NORMALITY: DENIED</span></div>
+      </aside>
+    </main>
+    <footer class="footer"><span>© BUREAU OF ABSURDITY <b>✳</b> NO DONUT WAS SPARED</span><span>ESC — PAUSE <b>·</b> HOLD MOUSE — AIM <b>·</b> M — SOUND</span></footer>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
